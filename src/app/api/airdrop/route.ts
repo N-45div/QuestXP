@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
     try {
         // const session = await getSession();
 
-        const userId = session.user.id;
         const { points, walletAddress } = await request.json();
 
         if (typeof points !== "number" || !walletAddress) {
