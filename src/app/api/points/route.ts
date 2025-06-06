@@ -1,0 +1,50 @@
+import { NextRequest, NextResponse } from "next/server";
+import { getSession } from "@civic/auth-web3/nextjs/server";
+
+// In-memory storage for points (would use a database in production)
+const userPoints: Record<string, number> = {};
+
+export async function GET(request: NextRequest) {
+    try {
+        const session = await getSession();
+
+        if (!session?.user?.id) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const userId = session.user.id;
+        const points = userPoints[userId] || 0;
+
+        return NextResponse.json({ points });
+    } catch (error) {
+        console.error("Error getting points:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
+}
+
+export async function POST(request: NextRequest) {
+    try {
+        const session = await getSession();
+
+        if (!session?.user?.id) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const userId = session.user.id;
+        const { points } = await request.json();
+
+        if (typeof points !== "number") {
+            return NextResponse.json({ error: "Invalid points value" }, { status: 400 });
+        }
+
+        userPoints[userId] = (userPoints[userId] || 0) + points;
+
+        return NextResponse.json({
+            points: userPoints[userId],
+            message: "Points updated successfully"
+        });
+    } catch (error) {
+        console.error("Error updating points:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
+} 

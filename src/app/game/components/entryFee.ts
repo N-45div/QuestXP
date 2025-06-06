@@ -1,0 +1,17 @@
+import { Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+
+export const GAME_TREASURY_ADDRESS = "DHw7Je34SmMGT7GcSdkKHBfjCbYaFoYKa2yxKKwPvYdW";
+
+export async function payEntryFee(wallet, userAddress, connection, feeLamports) {
+    const treasuryPubkey = new PublicKey(GAME_TREASURY_ADDRESS);
+    const transaction = new Transaction().add(
+        SystemProgram.transfer({
+            fromPubkey: new PublicKey(userAddress),
+            toPubkey: treasuryPubkey,
+            lamports: feeLamports,
+        })
+    );
+    return wallet.sendTransaction(transaction, connection);
+}
+
+export const MAINNET_CONNECTION = new Connection("https://mainnet.helius-rpc.com/?api-key=2d8978c6-7067-459f-ae97-7ea035f1a0cb"); 
