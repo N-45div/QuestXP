@@ -8,12 +8,6 @@ const userPoints: Record<string, number> = {};
 
 export async function GET(request: NextRequest) {
     try {
-        const session = await getSession();
-
-        if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-
         const userId = session.user.id;
         const points = userPoints[userId] || 0;
 
@@ -26,12 +20,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST() {
     try {
-        const session = await getSession();
-
-        if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-
         const userId = session.user.id;
         const { points } = await request.json();
 
