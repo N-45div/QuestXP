@@ -185,7 +185,7 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     }, 1500);
   };
 
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
       setSelectedAnswer(null);
@@ -194,7 +194,7 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     } else {
       completeQuiz();
     }
-  };
+  }, [currentQuestionIndex, shuffledQuestions.length, completeQuiz]);
 
   const completeQuiz = () => {
     setQuizComplete(true);
