@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -142,6 +143,32 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     setShuffledQuestions(shuffled);
   }, []);
 
+  const completeQuiz = useCallback(() => {
+    setQuizComplete(true);
+    const success = score >= 3; // Pass if at least 3 out of 5 questions are correct
+    setTimeout(() => {
+      onComplete(success);
+    }, 2000);
+  }, [score, onComplete]);
+
+  const nextQuestion = useCallback(() => {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+      setSelectedAnswer(null);
+      setIsAnswerCorrect(null);
+      setTimeLeft(30);
+    } else {
+      completeQuiz();
+    }
+  }, [currentQuestionIndex, shuffledQuestions.length, completeQuiz]);
+
+  const handleTimeout = useCallback(() => {
+    setIsAnswerCorrect(false);
+    setTimeout(() => {
+      nextQuestion();
+    }, 1500);
+  }, [nextQuestion]);
+
   // Timer effect
   useEffect(() => {
     if (quizComplete || isAnswerCorrect !== null) return;
@@ -160,13 +187,6 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     return () => clearInterval(timer);
   }, [currentQuestionIndex, isAnswerCorrect, quizComplete, handleTimeout]);
 
-  const handleTimeout = useCallback(() => {
-    setIsAnswerCorrect(false);
-    setTimeout(() => {
-      nextQuestion();
-    }, 1500);
-  }, [nextQuestion]);
-
   const handleAnswerSelect = (answerIndex: number) => {
     if (isAnswerCorrect !== null || quizComplete) return;
 
@@ -184,25 +204,6 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
       nextQuestion();
     }, 1500);
   };
-
-  const nextQuestion = useCallback(() => {
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-      setSelectedAnswer(null);
-      setIsAnswerCorrect(null);
-      setTimeLeft(30);
-    } else {
-      completeQuiz();
-    }
-  }, [currentQuestionIndex, shuffledQuestions.length, completeQuiz]);
-
-  const completeQuiz = useCallback(() => {
-    setQuizComplete(true);
-    const success = score >= 3; // Pass if at least 3 out of 5 questions are correct
-    setTimeout(() => {
-      onComplete(success);
-    }, 2000);
-  }, [score, onComplete]);
 
   const restartQuiz = () => {
     const shuffled = [...quizQuestions].sort(() => Math.random() - 0.5).slice(0, 5);
@@ -287,7 +288,7 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
 
           {score >= 3 ? (
             <div className="alert alert-success mb-6">
-              Congratulations! You&apos;ve earned points for your knowledge!
+              Congratulations! You've earned points for your knowledge!
             </div>
           ) : (
             <div className="alert alert-warning mb-6">
@@ -305,4 +306,4 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
       )}
     </div>
   );
-} 
+}

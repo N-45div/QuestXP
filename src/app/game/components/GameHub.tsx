@@ -66,7 +66,10 @@ export default function GameHub() {
             }
             setActiveGame(gameId);
         } catch (err) {
-            setEntryFeeError("Entry fee payment failed: " + (err.message || err));
+            setEntryFeeError(
+                "Entry fee payment failed: " +
+                (err instanceof Error ? err.message : String(err))
+            );
         } finally {
             setEntryFeeLoadingGameId(null);
         }

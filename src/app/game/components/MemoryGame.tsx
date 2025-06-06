@@ -60,6 +60,15 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
         initializeGame();
     }, [initializeGame]);
 
+    const endGame = useCallback((success: boolean) => {
+        if (timerInterval) clearInterval(timerInterval);
+        setGameOver(true);
+        setGameStarted(false);
+        setTimeout(() => {
+            onComplete(success);
+        }, 1500);
+    }, [timerInterval, onComplete]);
+
     // Handle game completion
     useEffect(() => {
         if (matchedPairs === cardTypes.length && gameStarted) {
@@ -90,15 +99,6 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
         }, 1000);
         setTimerInterval(interval);
     };
-
-    const endGame = useCallback((success: boolean) => {
-        if (timerInterval) clearInterval(timerInterval);
-        setGameOver(true);
-        setGameStarted(false);
-        setTimeout(() => {
-            onComplete(success);
-        }, 1500);
-    }, [timerInterval, onComplete]);
 
     const handleCardClick = (id: number) => {
         // Start the game on first card click
