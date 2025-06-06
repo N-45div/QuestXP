@@ -8,10 +8,7 @@ const userPoints: Record<string, number> = {};
 
 export async function GET(request: NextRequest) {
     try {
-        const userId = session.user.id;
-        const points = userPoints[userId] || 0;
-
-        return NextResponse.json({ points });
+        return NextResponse.json({ userPoints });
     } catch (error) {
         console.error("Error getting points:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
