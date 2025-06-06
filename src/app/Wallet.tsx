@@ -33,11 +33,6 @@ const useBalance = () => {
 
 // Separate component for the app content that needs access to hooks
 const Wallet = () => {
-  // Get the Solana wallet balance
-  const balance = useBalance();
-  // Get the Solana address
-  const { address } = useWallet({ type: "solana" });
-
   // Remove the wallet info card UI
   return null;
 };

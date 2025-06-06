@@ -34,7 +34,7 @@ const UserProfile = forwardRef(function UserProfile({ points, address }, ref) {
 
     useEffect(() => {
         fetchBalance();
-    }, [address]);
+    }, [address, fetchBalance]);
 
     useEffect(() => {
         // Set tier based on points

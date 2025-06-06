@@ -26,7 +26,7 @@ export default function SendTransaction() {
     const wallet = userContext.solana.wallet;
     const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=2d8978c6-7067-459f-ae97-7ea035f1a0cb");
 
-    const handleSend = async (e: React.FormEvent) => {
+    const handleSend = async (e: unknown) => {
         e.preventDefault();
         setStatus("");
         setTxSig("");

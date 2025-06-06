@@ -158,7 +158,7 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestionIndex, isAnswerCorrect, quizComplete]);
+  }, [currentQuestionIndex, isAnswerCorrect, quizComplete, handleTimeout]);
 
   const handleTimeout = () => {
     setIsAnswerCorrect(false);
@@ -257,10 +257,10 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
                   className={`quiz-option ${selectedAnswer === index
-                      ? isAnswerCorrect
-                        ? "correct"
-                        : "incorrect"
-                      : ""
+                    ? isAnswerCorrect
+                      ? "correct"
+                      : "incorrect"
+                    : ""
                     } ${selectedAnswer !== null &&
                       index === currentQuestion.correctAnswer
                       ? "correct"
@@ -288,7 +288,7 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
 
           {score >= 3 ? (
             <div className="alert alert-success mb-6">
-              Congratulations! You've earned points for your knowledge!
+              Congratulations! You&apos;ve earned points for your knowledge!
             </div>
           ) : (
             <div className="alert alert-warning mb-6">

@@ -7,9 +7,8 @@ import QuizGame from "./QuizGame";
 import UserProfile from "./UserProfile";
 import Leaderboard from "./Leaderboard";
 import AirdropClaim from "./AirdropClaim";
-import { payEntryFee, GAME_TREASURY_ADDRESS, MAINNET_CONNECTION } from "./entryFee";
+import { payEntryFee, MAINNET_CONNECTION } from "./entryFee";
 import { userHasWallet } from "@civic/auth-web3";
-import { Connection } from "@solana/web3.js";
 
 const games = [
     {
@@ -178,7 +177,7 @@ export default function GameHub() {
                 <h3 className="mb-2">How to Earn Tokens</h3>
                 <p>
                     Earn points by playing games and completing challenges. Once you reach certain
-                    point thresholds, you'll be eligible for token airdrops. Leaderboard positions
+                    point thresholds, you&apos;ll be eligible for token airdrops. Leaderboard positions
                     also qualify for bonus rewards!
                 </p>
                 <div className="flex justify-between mt-4">

@@ -150,7 +150,7 @@ export default function Leaderboard({ onBack, userPoints, userAddress }: Leaderb
             {userRank === null || userRank > 10 ? (
                 <div className="alert alert-warning mt-6">
                     <p className="user-profile-value">
-                        You're not on the leaderboard yet! Play more games to earn points and climb the ranks.
+                        You&apos;re not on the leaderboard yet! Play more games to earn points and climb the ranks.
                     </p>
                     <p className="user-profile-label mt-1">
                         Current points: {userPoints}

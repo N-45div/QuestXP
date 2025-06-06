@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { getSession } from "@civic/auth-web3/nextjs/server";
 // TODO: Implement session logic here if needed. The previous import path is not valid in the current version of @civic/auth-web3.
-import { Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-import { clusterApiUrl } from "@solana/web3.js";
 
 // In-memory storage for airdrops (would use a database in production)
 const userAirdrops: Record<string, { lastAirdropTimestamp: number, totalAirdropped: number }> = {};

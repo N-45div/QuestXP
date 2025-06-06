@@ -38,14 +38,14 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
     // Initialize the game
     useEffect(() => {
         initializeGame();
-    }, []);
+    }, [initializeGame]);
 
     // Handle game completion
     useEffect(() => {
         if (matchedPairs === cardTypes.length && gameStarted) {
             endGame(true);
         }
-    }, [matchedPairs, gameStarted]);
+    }, [matchedPairs, gameStarted, endGame]);
 
     // Timer effect
     useEffect(() => {

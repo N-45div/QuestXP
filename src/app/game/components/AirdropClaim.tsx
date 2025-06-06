@@ -132,8 +132,7 @@ export default function AirdropClaim({ points }: AirdropClaimProps) {
 
             <div className="mt-4 user-profile-label">
                 <p>
-                    Airdrops are limited to once every 24 hours. Tokens will be sent directly to your embedded
-                    wallet.
+                    Airdrops are limited to once every 24 hours. Tokens will be sent directly to your embedded wallet.
                 </p>
             </div>
         </div>
