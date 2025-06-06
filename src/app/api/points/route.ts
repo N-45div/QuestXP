@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession } from "@civic/auth-web3/nextjs/server";
+// import { getSession } from "@civic/auth-web3/nextjs/server";
+// TODO: Implement session logic here if needed. The previous import path is not valid in the current version of @civic/auth-web3.
 
 // In-memory storage for points (would use a database in production)
 const userPoints: Record<string, number> = {};

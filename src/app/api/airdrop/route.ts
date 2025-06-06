@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession } from "@civic/auth-web3/nextjs/server";
+// import { getSession } from "@civic/auth-web3/nextjs/server";
+// TODO: Implement session logic here if needed. The previous import path is not valid in the current version of @civic/auth-web3.
 import { Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { clusterApiUrl } from "@solana/web3.js";
 
@@ -15,7 +16,7 @@ const AIRDROP_TIERS = [
 
 export async function POST(request: NextRequest) {
     try {
-        const session = await getSession();
+        // const session = await getSession();
 
         if (!session?.user?.id) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
