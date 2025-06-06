@@ -40,7 +40,7 @@ export default function GameHub() {
     const userContext = useUser();
     const [entryFeeLoadingGameId, setEntryFeeLoadingGameId] = useState<string | null>(null);
     const [entryFeeError, setEntryFeeError] = useState("");
-    const userProfileRef = useRef(null);
+    const userProfileRef = useRef<{ refreshBalance?: () => Promise<void> }>(null);
 
     const handleGameComplete = (points: number) => {
         setUserPoints((prev) => prev + points);
