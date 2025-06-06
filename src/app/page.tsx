@@ -28,7 +28,7 @@ export default function Home() {
           </>
         ) : (
           <div className="card mt-6 text-center">
-            <h2>Civic Play & Earn</h2>
+            <h2>QuestXP</h2>
             <p>
               Play fun games, earn points, and get token airdrops! Connect with your Civic Auth wallet and start earning.
             </p>

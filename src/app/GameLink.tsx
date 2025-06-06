@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function GameLink() {
     return (
         <div className="mt-6 p-6 bg-blue-50 border border-blue-200 rounded-lg max-w-md">
-            <h2 className="text-2xl font-bold mb-3">Civic Play & Earn</h2>
+            <h2 className="text-2xl font-bold mb-3">QuestXP</h2>
             <p className="mb-4">
                 Play fun games, earn points, and get token airdrops! Connect with your Civic Auth wallet and start earning.
             </p>

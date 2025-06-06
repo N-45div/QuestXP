@@ -47,7 +47,7 @@ export default function GamePage() {
 
     return (
         <div className="main-content container">
-            <h1 className="text-center">Civic Play & Earn</h1>
+            <h1 className="text-center">QuestXP</h1>
 
             {!hasWallet ? (
                 <div className="card text-center">
