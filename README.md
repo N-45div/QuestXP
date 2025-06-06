@@ -1,10 +1,10 @@
-# Civic Play & Earn
+# QuestXP
 
 A play-to-earn platform built with Civic Auth embedded wallets for the [Civic Auth Hackathon](https://dorahacks.io/hackathon/civic-auth/detail).
 
 ## Overview
 
-Civic Play & Earn is a platform where users can play simple, engaging games to earn points, which can then be redeemed for token airdrops. The platform leverages Civic Auth's embedded wallets to provide a seamless web3 experience without the typical onboarding friction.
+QuestXP is a platform where users can play simple, engaging games to earn points, which can then be redeemed for token airdrops. The platform leverages Civic Auth's embedded wallets to provide a seamless web3 experience without the typical onboarding friction.
 
 ## Features
 
@@ -35,13 +35,13 @@ Civic Play & Earn is a platform where users can play simple, engaging games to e
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
-   cd civic-play-earn
+   git clone https://github.com/N-45div/QuestXP.git
+   cd QuestXP
    ```
 
 2. Install dependencies:
    ```
-   yarn install
+   npm install
    ```
 
 3. Set up environment variables:
@@ -52,7 +52,7 @@ Civic Play & Earn is a platform where users can play simple, engaging games to e
 
 4. Run the development server:
    ```
-   yarn dev
+   npm run dev
    ```
 
 ## How It Works
