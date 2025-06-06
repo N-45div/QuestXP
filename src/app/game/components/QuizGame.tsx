@@ -196,14 +196,13 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     }
   }, [currentQuestionIndex, shuffledQuestions.length, completeQuiz]);
 
-  const completeQuiz = () => {
+  const completeQuiz = useCallback(() => {
     setQuizComplete(true);
     const success = score >= 3; // Pass if at least 3 out of 5 questions are correct
-
     setTimeout(() => {
       onComplete(success);
     }, 2000);
-  };
+  }, [score, onComplete]);
 
   const restartQuiz = () => {
     const shuffled = [...quizQuestions].sort(() => Math.random() - 0.5).slice(0, 5);

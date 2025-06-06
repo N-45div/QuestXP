@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
-import { useWallet } from "@civic/auth-web3/react";
+import { clusterApiUrl, Connection } from "@solana/web3.js";
 
 const useConnection = () => {
   const [connection, setConnection] = useState<Connection | null>(null);

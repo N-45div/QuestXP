@@ -3,11 +3,6 @@
 import { useState, useEffect, useImperativeHandle, forwardRef, useCallback } from "react";
 import { Connection, PublicKey } from "@solana/web3.js";
 
-interface UserProfileProps {
-    points: number;
-    address: string;
-}
-
 const UserProfile = forwardRef(function UserProfile({ points, address }, ref) {
     const [balance, setBalance] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(true);
