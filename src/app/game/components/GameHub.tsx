@@ -47,7 +47,7 @@ export default function GameHub() {
         setActiveGame(null);
     };
 
-    async function handleStartGame(gameId) {
+    async function handleStartGame(gameId: string) {
         setEntryFeeError("");
         if (!userHasWallet(userContext)) {
             setEntryFeeError("Connect your wallet first!");
