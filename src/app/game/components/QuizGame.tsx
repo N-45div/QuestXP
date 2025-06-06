@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface QuizGameProps {
   onComplete: (success: boolean) => void;
@@ -160,12 +160,12 @@ export default function QuizGame({ onComplete, onExit }: QuizGameProps) {
     return () => clearInterval(timer);
   }, [currentQuestionIndex, isAnswerCorrect, quizComplete, handleTimeout]);
 
-  const handleTimeout = () => {
+  const handleTimeout = useCallback(() => {
     setIsAnswerCorrect(false);
     setTimeout(() => {
       nextQuestion();
     }, 1500);
-  };
+  }, [nextQuestion]);
 
   const handleAnswerSelect = (answerIndex: number) => {
     if (isAnswerCorrect !== null || quizComplete) return;

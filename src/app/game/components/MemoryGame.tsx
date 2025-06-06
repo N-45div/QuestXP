@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface MemoryGameProps {
     onComplete: (success: boolean) => void;
@@ -36,6 +36,26 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
     const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(null);
 
     // Initialize the game
+    const initializeGame = useCallback(() => {
+        // Create pairs of cards
+        const cardPairs = [...cardTypes, ...cardTypes].map((type, index) => ({
+            id: index,
+            type,
+            flipped: false,
+            matched: false,
+        }));
+
+        // Shuffle the cards
+        const shuffledCards = shuffleArray(cardPairs);
+        setCards(shuffledCards);
+        setFlippedCards([]);
+        setMatchedPairs(0);
+        setMoves(0);
+        setGameOver(false);
+        setTimer(0);
+        setGameStarted(false);
+    }, []);
+
     useEffect(() => {
         initializeGame();
     }, [initializeGame]);
@@ -54,26 +74,6 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
         };
     }, [timerInterval]);
 
-    const initializeGame = () => {
-        // Create pairs of cards
-        const cardPairs = [...cardTypes, ...cardTypes].map((type, index) => ({
-            id: index,
-            type,
-            flipped: false,
-            matched: false,
-        }));
-
-        // Shuffle the cards
-        const shuffledCards = shuffleArray(cardPairs);
-        setCards(shuffledCards);
-        setFlippedCards([]);
-        setMatchedPairs(0);
-        setMoves(0);
-        setGameOver(false);
-        setTimer(0);
-        setGameStarted(false);
-    };
-
     const shuffleArray = (array: Card[]): Card[] => {
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {
@@ -91,16 +91,14 @@ export default function MemoryGame({ onComplete, onExit }: MemoryGameProps) {
         setTimerInterval(interval);
     };
 
-    const endGame = (success: boolean) => {
+    const endGame = useCallback((success: boolean) => {
         if (timerInterval) clearInterval(timerInterval);
         setGameOver(true);
         setGameStarted(false);
-
-        // Wait a moment before calling onComplete
         setTimeout(() => {
             onComplete(success);
         }, 1500);
-    };
+    }, [timerInterval, onComplete]);
 
     const handleCardClick = (id: number) => {
         // Start the game on first card click

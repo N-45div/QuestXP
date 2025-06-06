@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
-import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
+import { useState, useEffect, useImperativeHandle, forwardRef, useCallback } from "react";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 interface UserProfileProps {
     points: number;
@@ -13,7 +13,7 @@ const UserProfile = forwardRef(function UserProfile({ points, address }, ref) {
     const [isLoading, setIsLoading] = useState(true);
     const [tier, setTier] = useState("Bronze");
 
-    async function fetchBalance() {
+    const fetchBalance = useCallback(async () => {
         if (!address) return;
         setIsLoading(true);
         try {
@@ -26,7 +26,7 @@ const UserProfile = forwardRef(function UserProfile({ points, address }, ref) {
         } finally {
             setIsLoading(false);
         }
-    }
+    }, [address]);
 
     useImperativeHandle(ref, () => ({
         refreshBalance: fetchBalance
