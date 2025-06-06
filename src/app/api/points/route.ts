@@ -15,23 +15,11 @@ export async function GET(request: NextRequest) {
     }
 }
 
-export async function POST() {
+export async function POST(request: NextRequest) {
     try {
-        const userId = session.user.id;
-        const { points } = await request.json();
-
-        if (typeof points !== "number") {
-            return NextResponse.json({ error: "Invalid points value" }, { status: 400 });
-        }
-
-        userPoints[userId] = (userPoints[userId] || 0) + points;
-
-        return NextResponse.json({
-            points: userPoints[userId],
-            message: "Points updated successfully"
-        });
+        const body = await request.json();
+        return NextResponse.json({ received: body });
     } catch (error) {
-        console.error("Error updating points:", error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json({ error: "Error" }, { status: 500 });
     }
 } 
