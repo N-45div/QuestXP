@@ -3,17 +3,6 @@
 import { useEffect, useState } from "react";
 import { clusterApiUrl, Connection } from "@solana/web3.js";
 
-const useConnection = () => {
-  const [connection, setConnection] = useState<Connection | null>(null);
-
-  useEffect(() => {
-    const con = new Connection(clusterApiUrl("devnet"));
-    setConnection(con);
-  }, []);
-
-  return { connection };
-}
-
 // A simple hook to get the wallet's balance in lamports
 // const useBalance = () => {
 //   const [balance, setBalance] = useState<number>();

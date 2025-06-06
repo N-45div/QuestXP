@@ -99,7 +99,7 @@ export default function AirdropClaim({ points }: AirdropClaimProps) {
             {isEligible ? (
                 <div className="alert alert-success mb-6">
                     <p>
-                        You're eligible for a <span className="user-profile-value">{eligibleAmount} token</span> airdrop!
+                        You&apos;re eligible for a <span className="user-profile-value">{eligibleAmount} token</span> airdrop!
                     </p>
                 </div>
             ) : (
