@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
         // Check if user has received an airdrop in the last 24 hours
         const now = Date.now();
-        const lastAirdrop = userAirdrops[userId]?.lastAirdropTimestamp || 0;
+        const lastAirdrop = userAirdrops[walletAddress]?.lastAirdropTimestamp || 0;
         const hoursSinceLastAirdrop = (now - lastAirdrop) / (1000 * 60 * 60);
 
         if (hoursSinceLastAirdrop < 24) {
@@ -56,15 +56,15 @@ export async function POST(request: NextRequest) {
         // For this demo, we'll simulate a successful airdrop
 
         // Update airdrop record
-        userAirdrops[userId] = {
+        userAirdrops[walletAddress] = {
             lastAirdropTimestamp: now,
-            totalAirdropped: (userAirdrops[userId]?.totalAirdropped || 0) + tokensToAirdrop
+            totalAirdropped: (userAirdrops[walletAddress]?.totalAirdropped || 0) + tokensToAirdrop
         };
 
         return NextResponse.json({
             success: true,
             tokensAirdropped: tokensToAirdrop,
-            totalAirdropped: userAirdrops[userId].totalAirdropped,
+            totalAirdropped: userAirdrops[walletAddress].totalAirdropped,
             message: `Successfully airdropped ${tokensToAirdrop} tokens to your wallet!`
         });
 
