@@ -47,7 +47,7 @@ QuestXP is a platform where users can play simple, engaging games to earn points
 3. Set up environment variables:
    Create a `.env.local` file with the following variables:
    ```
-   CLIENT_ID=your_civic_auth_client_id
+   NEXT_PUBLIC_CLIENT_ID=your_civic_auth_client_id
    ```
 
 4. Run the development server:

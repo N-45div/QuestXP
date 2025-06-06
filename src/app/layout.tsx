@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <CivicAuthProvider clientId={process.env.CLIENT_ID || ""}>
+        <CivicAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID || ""}>
           {children}
         </CivicAuthProvider>
       </body>
