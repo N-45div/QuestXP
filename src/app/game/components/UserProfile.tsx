@@ -18,7 +18,7 @@ const UserProfile = forwardRef<{ refreshBalance?: () => Promise<void> } | null, 
             if (!address) return;
             setIsLoading(true);
             try {
-                const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=2d8978c6-7067-459f-ae97-7ea035f1a0cb");
+                const connection = new Connection(`https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_KEY}`);
                 const publicKey = new PublicKey(address);
                 const bal = await connection.getBalance(publicKey);
                 setBalance(bal / 1e9); // Convert lamports to SOL

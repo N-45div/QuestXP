@@ -16,4 +16,4 @@ export async function payEntryFee(wallet: SolanaWallet, userAddress: PublicKeyIn
     return wallet.sendTransaction(transaction, connection);
 }
 
-export const MAINNET_CONNECTION = new Connection("https://mainnet.helius-rpc.com/?api-key=2d8978c6-7067-459f-ae97-7ea035f1a0cb"); 
+export const MAINNET_CONNECTION = new Connection(`https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_KEY}`);
